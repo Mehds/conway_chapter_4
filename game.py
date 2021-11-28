@@ -33,6 +33,7 @@ reset_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((200, 600)
 
 clock = pygame.time.Clock()
 is_running = True
+game_on = True
 
 while is_running:
     time_delta = clock.tick(5) / 1000.0
@@ -50,7 +51,10 @@ while is_running:
     # window_surface.blit(game_background, (0, 0))
     window_surface.blit(ui_background, (0, 550))
     manager.draw_ui(window_surface)
-    g.compute_future_states()
-    g.update()
-    g.draw()
+
+    if game_on:
+        g.compute_future_states()
+        g.update()
+
+    g.draw(window_surface)
     pygame.display.update()

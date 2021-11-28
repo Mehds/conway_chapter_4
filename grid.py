@@ -1,6 +1,8 @@
 import time
 from cell import Cell
 
+CELL_OFFSET = 2
+
 
 class Grid:
     def __init__(self, screen_dimensions: tuple, surface, width: int, height: int):
@@ -8,11 +10,12 @@ class Grid:
         self.height = height
 
         screen_width, screen_height = screen_dimensions
-        cell_width, cell_height = (screen_width / width, screen_height / height)
+        cell_width, cell_height = (screen_width / (width + 1), screen_height / (height + 1))
 
         self.cells = [
             [Cell(surface, (x * cell_width, y * cell_height), (cell_width, cell_height)) for x in range(width)] for y in
             range(height)]
+        self.rects = []
 
     def __str__(self):
         output = ""
@@ -45,8 +48,15 @@ class Grid:
 
     def draw(self):
         for row in self.cells:
-            for cell in row:
-                cell.draw()
+            self.rects.append([cell.draw(surface) for cell in row])
+
+    def check_clicks(self, pos):
+        print('checking for collisions')
+        for i, row in enumerate(self.rects):
+            for j, rect in enumerate(row):
+                if rect.collidepoint(pos):
+                    print(f'collided with {rect} at pos {i}, {j}')
+                    self.cells[i][j].flip()
 
     # cells have up to 8 neighbours, except cells in the boundary rows and columns.
     # this iterator yields a given position's neighbors
