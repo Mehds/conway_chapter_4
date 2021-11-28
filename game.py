@@ -33,7 +33,7 @@ reset_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((200, 600)
 
 clock = pygame.time.Clock()
 is_running = True
-game_on = True
+game_on = False
 
 while is_running:
     time_delta = clock.tick(5) / 1000.0
