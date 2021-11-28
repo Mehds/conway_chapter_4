@@ -5,7 +5,7 @@ CELL_OFFSET = 2
 
 
 class Grid:
-    def __init__(self, screen_dimensions: tuple, surface, width: int, height: int):
+    def __init__(self, screen_dimensions: tuple, width: int, height: int):
         self.width = width
         self.height = height
 
@@ -13,7 +13,7 @@ class Grid:
         cell_width, cell_height = (screen_width / (width + 1), screen_height / (height + 1))
 
         self.cells = [
-            [Cell(surface, (x * cell_width, y * cell_height), (cell_width, cell_height)) for x in range(width)] for y in
+            [Cell((x * (cell_width + CELL_OFFSET), y * (cell_height + CELL_OFFSET)), (cell_width, cell_height)) for x in range(width)] for y in
             range(height)]
         self.rects = []
 
@@ -46,7 +46,9 @@ class Grid:
             for cell in row:
                 cell.update()
 
-    def draw(self):
+    def draw(self, surface):
+        self.rects = []
+
         for row in self.cells:
             self.rects.append([cell.draw(surface) for cell in row])
 
