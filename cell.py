@@ -6,25 +6,17 @@ ACTIVE_COLOR = "#00FF00"
 
 
 class Cell:
-    def __init__(self, surface, pos: tuple, dimensions: tuple, alive=False):
+    def __init__(self, pos: tuple, dimensions: tuple, alive=False):
         self.active = alive
         self.future_state = None
-        self.surface = surface
-        print("new cell:")
-        print(pos)
-        print(dimensions)
         self.rectangle = Rect(pos[0], pos[1], dimensions[0], dimensions[1])
 
-    def draw(self):
+    def draw(self, surface):
         """
-            The cell keeps track of the surface it should draw on, and of its shape.
-            This method checks what state the cell is in, and draws it in the appropriate color
+            This method checks what state the cell is in, and draws it in the appropriate color on the provided surface
         """
-
-        if self.active:
-            pygame.draw.rect(self.surface, ACTIVE_COLOR, self.rectangle, width=2)
-        else:
-            pygame.draw.rect(self.surface, INACTIVE_COLOR, self.rectangle, width=2)
+        color = ACTIVE_COLOR if self.active else INACTIVE_COLOR
+        return pygame.draw.rect(surface, color, self.rectangle)
 
     def __str__(self):
         return "X" if self.active else "_"
