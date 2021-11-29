@@ -1,8 +1,10 @@
 import pygame
 from pygame.locals import Rect
 
-INACTIVE_COLOR = "#808080"
-ACTIVE_COLOR = "#00FF00"
+INACTIVE_COLOR = "#16302B"
+ACTIVE_COLOR = "#C0E5C8"
+# INACTIVE_COLOR = "#808080"
+# ACTIVE_COLOR = "#00FF00"
 
 
 class Cell:
