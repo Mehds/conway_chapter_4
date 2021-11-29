@@ -13,7 +13,6 @@ class Grid:
         effective_width, effective_height = screen_width - 2 * PADDING - (CELL_OFFSET * (width - 1)), screen_height - 2 * PADDING - (CELL_OFFSET * (height - 1))
 
         cell_width, cell_height = (effective_width / width, effective_height / height)
-        print(f'{cell_width=}, {cell_height=}')
         self.cells = [
             [Cell((PADDING + x * (cell_width + CELL_OFFSET), PADDING + y * (cell_height + CELL_OFFSET)), (cell_width, cell_height)) for x in range(width)] for y in
             range(height)]
