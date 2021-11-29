@@ -14,7 +14,7 @@ BUTTON_WIDTH = 100
 BUTTON_HEIGHT = 40
 
 GAME_BACKGROUND_COLOR = '#000000'
-UI_BACKGROUND_COLOR = '#694873'
+UI_BACKGROUND_COLOR = '#000000'
 
 pygame.display.set_caption('Quick Start')
 window_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
