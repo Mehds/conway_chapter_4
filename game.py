@@ -11,7 +11,7 @@ window_surface = pygame.display.set_mode((1000, 750))
 game_background = pygame.Surface((1000, 550))
 game_background.fill(pygame.Color('#0F0F00'))
 
-g = Grid((1000, 550), window_surface, 20, 20)
+g = Grid((1000, 550), window_surface, 15, 15)
 g.flip(2, 1)
 g.flip(3, 2)
 g.flip(1, 3)
@@ -33,7 +33,7 @@ reset_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((200, 600)
 
 clock = pygame.time.Clock()
 is_running = True
-game_on = False
+game_on = True
 
 while is_running:
     time_delta = clock.tick(5) / 1000.0
