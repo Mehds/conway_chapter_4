@@ -4,17 +4,8 @@ import pygame_gui
 from grid import Grid
 from controller import EventController
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-UI_SURFACE_HEIGHT = 100
-
 GAME_BACKGROUND_COLOR = '#0F0F00'
 UI_BACKGROUND_COLOR = '#FFFFFF'
-
-BUTTON_WIDTH = 100
-BUTTON_HEIGHT = 50
-BUTTON_Y_COORD = SCREEN_HEIGHT - UI_SURFACE_HEIGHT + BUTTON_HEIGHT / 2
-
 
 pygame.init()
 WINDOW_WIDTH = 1000
@@ -35,7 +26,6 @@ window_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 game_background = pygame.Surface((WINDOW_WIDTH, GAME_HEIGHT))
 game_background.fill(pygame.Color(GAME_BACKGROUND_COLOR))
 
-
 ui_background = pygame.Surface((WINDOW_WIDTH, UI_HEIGHT))
 ui_background.fill(pygame.Color(UI_BACKGROUND_COLOR))
 
@@ -50,25 +40,11 @@ reset_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((2*70 + BU
                                             manager=manager)
 
 g = Grid((WINDOW_WIDTH, GAME_HEIGHT), window_surface, 15, 15)
-g = new_grid = Grid((SCREEN_WIDTH, SCREEN_HEIGHT - UI_SURFACE_HEIGHT), 15, 15)
 g.flip(2, 1)
 g.flip(3, 2)
 g.flip(1, 3)
 g.flip(2, 3)
 g.flip(3, 3)
-
-ui_background = pygame.Surface((1000, 200))
-ui_background.fill(pygame.Color('#FFFFFF'))
-
-manager = pygame_gui.UIManager((1000, 750))
-
-start_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((50, 600), (100, 50)),
-                                            text='Start',
-                                            manager=manager)
-
-reset_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((200, 600), (100, 50)),
-                                            text='Reset',
-                                            manager=manager)
 
 clock = pygame.time.Clock()
 
@@ -80,7 +56,7 @@ controller.register_ui_element('reset', reset_button)
 
 def display(game_state):
     window_surface.blit(game_background, (0, 0))
-    window_surface.blit(ui_background, (0, SCREEN_HEIGHT-UI_SURFACE_HEIGHT))
+    window_surface.blit(ui_background, (0, GAME_HEIGHT))
     manager.draw_ui(window_surface)
 
     if game_state['animation_running']:

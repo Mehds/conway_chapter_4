@@ -2,7 +2,7 @@ import time
 from cell import Cell
 
 CELL_OFFSET = 2
-
+PADDING = 7
 
 class Grid:
     def __init__(self, screen_dimensions: tuple, surface, width: int, height: int):
@@ -47,7 +47,8 @@ class Grid:
             for cell in row:
                 cell.update()
 
-    def draw(self):
+    def draw(self, surface):
+        self.rects = []
         for row in self.cells:
             self.rects.append([cell.draw(surface) for cell in row])
 
