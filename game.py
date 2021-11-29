@@ -33,7 +33,7 @@ reset_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((200, 600)
 
 clock = pygame.time.Clock()
 is_running = True
-game_on = True
+game_on = False
 
 while is_running:
     time_delta = clock.tick(5) / 1000.0
@@ -42,7 +42,8 @@ while is_running:
             is_running = False
         if event.type == pygame.USEREVENT:
             if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
-                pass
+                if event.ui_element == start_button:
+                    game_on = not game_on
 
         manager.process_events(event)
 
